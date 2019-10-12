@@ -1,6 +1,6 @@
 {
   "name": "unobtrusive-js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "main": "dist/unobtrusive.js",
   "module": "dist/unobtrusive.esm.js",
   "browser": "dist/unobtrusive.min.js",

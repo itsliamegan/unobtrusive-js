@@ -18,6 +18,7 @@ let dom = new JSDOM(`
 (global as any).FormData = dom.window.FormData;
 
 let requests: any[] = [];
+let clickCount = 0;
 
 Unobtrusive.start();
 
@@ -27,23 +28,34 @@ describe('Engine', () => {
     xhr.onCreate = request => {
       requests.push(request);
     };
+
+    let button = document.getElementById('button') as HTMLButtonElement;
+
+    button.addEventListener('click', () => {
+      clickCount++;
+    });
   });
 
   describe('DisableWith behavior', () => {
-    it('disables buttons when clicked', () => {
-      let button = dom.window.document.getElementById(
-        'button',
-      ) as HTMLButtonElement;
+    it('disables buttons when clicked', done => {
+      let button = document.getElementById('button') as HTMLButtonElement;
       button.click();
 
-      expect(button.disabled).to.be.true;
-      expect(button.textContent).to.equal('Clicking...');
+      setTimeout(() => {
+        expect(button.disabled).to.be.true;
+        expect(button.textContent).to.equal('Clicking...');
+        done();
+      }, 0);
+    });
+
+    it('allows the click to go through', () => {
+      expect(clickCount).to.equal(1);
     });
   });
 
   describe('Remote behavior', () => {
     it('submits forms with AJAX', () => {
-      let submit = dom.window.document.getElementById(
+      let submit = document.getElementById(
         'submit-button',
       ) as HTMLButtonElement;
       submit.click();

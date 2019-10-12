@@ -15,9 +15,11 @@ export default class DisableWith extends Behavior {
     let enabledText = button.textContent || '';
     let disabledText = button.dataset.disableWith || '';
 
-    button.disabled = true;
-    button.textContent = disabledText;
-    button.dataset.enabledText = enabledText;
+    setTimeout(() => {
+      button.disabled = true;
+      button.textContent = disabledText;
+      button.dataset.enabledText = enabledText;
+    }, 0);
   }
 
   private enable(element: Element) {
