@@ -35,8 +35,10 @@ export default class Request {
     let xhr = new XMLHttpRequest();
     xhr.open(this.method, this.url);
 
-    Object.entries(this.headers).forEach(([key, value]) => {
-      xhr.setRequestHeader(key, value);
+    Object.keys(this.headers).forEach(name => {
+      let value = this.headers[name];
+
+      xhr.setRequestHeader(name, value);
     });
 
     return new Promise<Response>((resolve, reject) => {

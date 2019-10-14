@@ -1,6 +1,7 @@
 import typescript from 'rollup-plugin-typescript2';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
+import bundleSize from 'rollup-plugin-bundle-size';
 import closure from '@ampproject/rollup-plugin-closure-compiler';
 import pkg from './package.json';
 
@@ -10,6 +11,7 @@ let plugins = [
     extensions: ['.js', '.ts'],
   }),
   commonjs(),
+  bundleSize(),
   typescript({
     tsconfigOverride: {
       compilerOptions: {

@@ -42,3 +42,7 @@ Placed on a `<form>`, it won't trigger a full page refresh as usual. Instead, it
 ##### Redirecting After Submission
 
 Redirecting is a common pattern after form submission. Redirects are as transparent as possible with Unobtrusive. If the server returns a typical 302 response, XMLHttpRequest will transparently follow it, and Unobtrusive will redirect to the final URL. **If the server returns a text response with the Content-Type: application/json, Unobtrusive will `eval` it**! This is very useful if you use Turbolinks, so you can send a `Turbolinks.visit` back to the client to redirect. **Make sure** that you don't send back user-generated text in the JavaScript, because it will be evaluated in the global scope by the browser!
+
+## Browser Support
+
+This library only supports browsers that support ES2015 and newer. If you want to include a Promise polyfill, you're free to - but, frankly, it's almost 2020, and most people will have updated their browser in the last 4 years.
