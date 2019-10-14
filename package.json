@@ -10,20 +10,14 @@
     "dist/*.js"
   ],
   "scripts": {
-    "build": "tsc && rollup -c",
+    "build": "rollup -c",
     "prebuild": "rimraf dist/",
-    "test": "mocha --require ./test-config.js test/**/*.test.ts",
-    "pretest": "yarn build",
+    "test": "mocha --require ts-node/register test/**/*.test.ts",
     "lint": "eslint src/**/*.ts --fix"
   },
   "dependencies": {},
   "devDependencies": {
     "@ampproject/rollup-plugin-closure-compiler": "^0.10.0",
-    "@babel/core": "^7.6.4",
-    "@babel/plugin-proposal-class-properties": "^7.5.5",
-    "@babel/preset-env": "^7.6.3",
-    "@babel/preset-typescript": "^7.6.0",
-    "@babel/register": "^7.6.2",
     "@types/chai": "^4.2.3",
     "@types/jsdom": "^12.2.4",
     "@types/mocha": "^5.2.7",
@@ -37,10 +31,11 @@
     "mocha": "^6.2.1",
     "rimraf": "^3.0.0",
     "rollup": "^1.23.1",
-    "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-typescript2": "^0.24.3",
     "sinon": "^7.5.0",
+    "ts-node": "^8.4.1",
     "typescript": "^3.6.4"
   }
 }

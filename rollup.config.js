@@ -1,19 +1,22 @@
+import typescript from 'rollup-plugin-typescript2';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
-import babel from 'rollup-plugin-babel';
 import closure from '@ampproject/rollup-plugin-closure-compiler';
 import pkg from './package.json';
 
 let input = './src/unobtrusive.ts';
 let plugins = [
-  babel({
-    exclude: 'node_modules/**',
-    extensions: ['.js', '.ts'],
-  }),
   resolve({
     extensions: ['.js', '.ts'],
   }),
   commonjs(),
+  typescript({
+    tsconfigOverride: {
+      compilerOptions: {
+        module: 'es2015',
+      },
+    },
+  }),
 ];
 
 export default [

@@ -22,10 +22,10 @@ let clickCount = 0;
 
 Unobtrusive.start();
 
-describe('Engine', () => {
+describe('Unobtrusive', () => {
   before(() => {
     let xhr = useFakeXMLHttpRequest();
-    xhr.onCreate = request => {
+    xhr.onCreate = (request: any) => {
       requests.push(request);
     };
 
@@ -36,7 +36,7 @@ describe('Engine', () => {
     });
   });
 
-  describe('DisableWith behavior', () => {
+  describe('data-disable-with', () => {
     it('disables buttons when clicked', done => {
       let button = document.getElementById('button') as HTMLButtonElement;
       button.click();
@@ -53,7 +53,7 @@ describe('Engine', () => {
     });
   });
 
-  describe('Remote behavior', () => {
+  describe('data-remote', () => {
     it('submits forms with AJAX', () => {
       let submit = document.getElementById(
         'submit-button',
